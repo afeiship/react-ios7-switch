@@ -72,7 +72,7 @@ $react-ios7-switch-green:#4cd964;
     opacity: 0.6;
   }
 
-  &[data-theme="green"]{
+  &[data-theme=green]{
     input:checked + span {
       box-shadow: inset 0 0 0 0.73em $react-ios7-switch-green;
     }
@@ -82,7 +82,7 @@ $react-ios7-switch-green:#4cd964;
     }
   }
 
-  &[data-theme="blue"]{
+  &[data-theme=blue]{
     input:checked + span {
       box-shadow: inset 0 0 0 0.73em $react-ios7-switch-blue;
     }
