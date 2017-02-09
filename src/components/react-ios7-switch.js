@@ -8,6 +8,7 @@ export default class extends React.Component{
     size:React.PropTypes.string,
     cssClass:React.PropTypes.string,
     checked:React.PropTypes.bool,
+    onChange:React.PropTypes.func
   };
   static defaultProps={
     theme:'green',
@@ -28,6 +29,7 @@ export default class extends React.Component{
       checked:!this.state.checked
     });
     ev.preventDefault();
+    this.props.onChange && this.props.onChange(this.state,ev);
   }
   render(){
     return (
