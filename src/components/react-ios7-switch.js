@@ -27,9 +27,10 @@ export default class extends React.Component{
   _click(ev){
     this.setState({
       checked:!this.state.checked
+    },()=>{
+      ev.preventDefault();
+      this.props.onChange && this.props.onChange(this.state,ev);
     });
-    ev.preventDefault();
-    this.props.onChange && this.props.onChange(this.state,ev);
   }
   render(){
     return (
