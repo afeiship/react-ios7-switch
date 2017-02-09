@@ -6,10 +6,10 @@ class App extends React.Component {
   _onChange(data){
     console.log(data);
   }
-  
+
   render(){
     return (
-      <div classNames="hello-switch">
+      <div className="hello-switch">
         <ReactIos7Switch />
         <ReactIos7Switch theme="blue" />
         <ReactIos7Switch theme="blue" onChange={this._onChange.bind(this)} checked={true} size="50px" />

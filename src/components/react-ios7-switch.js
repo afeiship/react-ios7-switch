@@ -25,13 +25,19 @@ export default class extends React.Component{
     };
   }
   _click(ev){
+    ev.preventDefault();
     this.setState({
       checked:!this.state.checked
     },()=>{
-      ev.preventDefault();
       this.props.onChange && this.props.onChange(this.state,ev);
     });
   }
+
+
+  _onChange(){
+    // console.log(this.state);
+  }
+
   render(){
     return (
       <label
@@ -42,7 +48,7 @@ export default class extends React.Component{
           fontSize:this.props.size
         }}
         className={classNames('react-ios7-switch',this.props.cssClass)}>
-        <input type="checkbox" checked={this.state.checked} disabled={this.props.disabled} />
+        <input type="checkbox" checked={this.state.checked} onChange={this._onChange.bind(this)} disabled={this.props.disabled} />
         <span></span>
       </label>
     );
