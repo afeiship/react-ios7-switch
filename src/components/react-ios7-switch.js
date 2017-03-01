@@ -24,6 +24,11 @@ export default class extends React.Component{
       checked:props.checked
     };
   }
+
+  componentWillReceiveProps(nextProps,nextState){
+    this.setState(nextProps);
+  }
+
   _click(ev){
     ev.preventDefault();
     this.setState({
