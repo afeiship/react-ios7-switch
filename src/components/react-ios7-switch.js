@@ -1,6 +1,7 @@
 import './style.scss';
-
 import classNames from 'classnames';
+import noop from 'noop';
+
 export default class extends React.Component{
   static propTypes={
     theme:React.PropTypes.string,
@@ -15,45 +16,43 @@ export default class extends React.Component{
     disabled:null,
     size:'30px',
     cssClass:'',
-    checked:false
+    checked:false,
+    onChange:noop
   };
 
   constructor(props){
     super(props);
-    this.state={
-      checked:props.checked
-    };
+    this.state=props;
   }
 
   componentWillReceiveProps(nextProps,nextState){
     this.setState(nextProps);
   }
 
-  _click(ev){
-    ev.preventDefault();
+  _onClick(inEvent){
+    inEvent.preventDefault();
     this.setState({
       checked:!this.state.checked
     },()=>{
-      this.props.onChange && this.props.onChange(this.state,ev);
+      this.props.onChange(this.state,inEvent);
     });
   }
 
-
-  _onChange(){
-    // console.log(this.state);
+  _onChange(inEvent){
   }
 
   render(){
+    const {cssClass,size,theme,disabled} = this.props;
     return (
       <label
-        onClick={this._click.bind(this)}
-        data-theme={this.props.theme}
-        data-disabled={this.props.disabled}
+        onClick={this._onClick.bind(this)}
+        data-theme={theme}
+        data-disabled={disabled}
         style={{
-          fontSize:this.props.size
+          fontSize:size
         }}
-        className={classNames('react-ios7-switch',this.props.cssClass)}>
-        <input type="checkbox" checked={this.state.checked} onChange={this._onChange.bind(this)} disabled={this.props.disabled} />
+        className={classNames('react-ios7-switch',cssClass)}>
+        <input type="checkbox" onChange={this._onChange.bind(this)} checked={this.state.checked} disabled={disabled} />
         <span></span>
       </label>
     );
