@@ -1,4 +1,5 @@
 import './style.scss';
+import React from 'react';
 import classNames from 'classnames';
 import noop from 'noop';
 
@@ -7,7 +8,7 @@ export default class extends React.Component{
     theme:React.PropTypes.string,
     disabled:React.PropTypes.bool,
     size:React.PropTypes.string,
-    cssClass:React.PropTypes.string,
+    className:React.PropTypes.string,
     checked:React.PropTypes.bool,
     onChange:React.PropTypes.func
   };
@@ -15,7 +16,7 @@ export default class extends React.Component{
     theme:'green',
     disabled:null,
     size:'30px',
-    cssClass:'',
+    className:'',
     checked:false,
     onChange:noop
   };
@@ -42,7 +43,7 @@ export default class extends React.Component{
   }
 
   render(){
-    const {cssClass,size,theme,disabled} = this.props;
+    const {className,size,theme,disabled} = this.props;
     return (
       <label
         onClick={this._onClick.bind(this)}
@@ -51,7 +52,7 @@ export default class extends React.Component{
         style={{
           fontSize:size
         }}
-        className={classNames('react-ios7-switch',cssClass)}>
+        className={classNames('react-ios7-switch',className)}>
         <input type="checkbox" onChange={this._onChange.bind(this)} checked={this.state.checked} disabled={disabled} />
         <span></span>
       </label>
