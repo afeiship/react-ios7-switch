@@ -35,7 +35,10 @@ export default class extends React.Component{
     this.setState({
       checked:!this.state.checked
     },()=>{
-      this.props.onChange(this.state,inEvent);
+      const value = this.state.checked;
+      this.props.onChange({
+        target:{value}
+      });
     });
   }
 
