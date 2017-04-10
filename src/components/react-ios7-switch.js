@@ -1,29 +1,31 @@
 import './style.scss';
-import React from 'react';
+import React,{PropTypes,PureComponent} from 'react';
 import classNames from 'classnames';
 import noop from 'noop';
 
-export default class extends React.Component{
+export default class extends PureComponent{
+
   static propTypes={
-    theme:React.PropTypes.string,
-    disabled:React.PropTypes.bool,
-    size:React.PropTypes.string,
-    className:React.PropTypes.string,
-    checked:React.PropTypes.bool,
-    onChange:React.PropTypes.func
+    theme:PropTypes.string,
+    disabled:PropTypes.bool,
+    size:PropTypes.string,
+    className:PropTypes.string,
+    value:PropTypes.bool,
+    onChange:PropTypes.func
   };
+
   static defaultProps={
     theme:'green',
     disabled:null,
     size:'30px',
     className:'',
-    checked:false,
+    value:false,
     onChange:noop
   };
 
   constructor(props){
     super(props);
-    this.state=props;
+    this.state={...props};
   }
 
   componentWillReceiveProps(nextProps,nextState){
@@ -33,9 +35,9 @@ export default class extends React.Component{
   _onClick(inEvent){
     inEvent.preventDefault();
     this.setState({
-      checked:!this.state.checked
+      value:!this.state.value
     },()=>{
-      const value = this.state.checked;
+      const {value} = this.state;
       this.props.onChange({
         target:{value}
       });
@@ -56,7 +58,7 @@ export default class extends React.Component{
           fontSize:size
         }}
         className={classNames('react-ios7-switch',className)}>
-        <input type="checkbox" onChange={this._onChange.bind(this)} checked={this.state.checked} disabled={disabled} />
+        <input type="checkbox" onChange={this._onChange.bind(this)} checked={this.state.value} disabled={disabled} />
         <span></span>
       </label>
     );
