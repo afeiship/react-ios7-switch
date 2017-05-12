@@ -39,9 +39,9 @@ export default class extends PureComponent{
     }
   }
 
-  _onChange(inEvent){
-    inEvent.stopPropagation();
-    const value = inEvent.target.checked;
+  _onClick(inEvent){
+    inEvent.preventDefault();
+    const value = !this.state.value;
     this.setState({ value },()=>{
       this.props.onChange({
         target:{value}
@@ -49,11 +49,14 @@ export default class extends PureComponent{
     });
   }
 
+  _onChange(inEvent){}
+
   render(){
     const {className,size,theme,disabled,...props} = this.props;
     return (
       <label
         {...props}
+        onClick={this._onClick.bind(this)}
         data-theme={theme}
         data-disabled={disabled}
         style={{

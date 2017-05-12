@@ -1,5 +1,6 @@
 $react-ios7-switch-blue:#26a2ff;
 $react-ios7-switch-green:#4cd964;
+$react-ios7-switch-red:#a72e23;
 .react-ios7-switch {
   display: inline-block;
   position: relative;
@@ -88,6 +89,15 @@ $react-ios7-switch-green:#4cd964;
     }
     input:focus:checked + span {
       box-shadow: inset 0 0 0 0.73em darken($react-ios7-switch-blue,10%);
+    }
+  }
+
+  &[data-theme=red]{
+    input:checked + span {
+      box-shadow: inset 0 0 0 0.73em $react-ios7-switch-red;
+    }
+    input:focus:checked + span {
+      box-shadow: inset 0 0 0 0.73em darken($react-ios7-switch-red,10%);
     }
   }
 
