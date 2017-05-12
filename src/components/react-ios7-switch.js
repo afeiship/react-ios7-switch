@@ -1,7 +1,8 @@
 import './style.scss';
 
-import React,{PropTypes, PureComponent} from 'react';
+import React,{ PureComponent } from 'react';
 
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import noop from 'noop';
 
@@ -34,30 +35,25 @@ export default class extends PureComponent{
 
   componentWillReceiveProps(nextProps,nextState){
     if(nextProps.value!==this.props.value){
-      this.setState({value:nextProps.value});
+      this.setState(nextProps);
     }
   }
 
-  _onClick(inEvent){
-    inEvent.preventDefault();
-    this.setState({
-      value:!this.state.value
-    },()=>{
-      const {value} = this.state;
+  _onChange(inEvent){
+    inEvent.stopPropagation();
+    const value = inEvent.target.checked;
+    this.setState({ value },()=>{
       this.props.onChange({
         target:{value}
       });
     });
   }
 
-  _onChange(inEvent){
-  }
-
   render(){
-    const {className,size,theme,disabled} = this.props;
+    const {className,size,theme,disabled,...props} = this.props;
     return (
       <label
-        onClick={this._onClick.bind(this)}
+        {...props}
         data-theme={theme}
         data-disabled={disabled}
         style={{
