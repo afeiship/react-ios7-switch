@@ -1,5 +1,7 @@
 import './style.scss';
-import React,{PropTypes,PureComponent} from 'react';
+
+import React,{PropTypes, PureComponent} from 'react';
+
 import classNames from 'classnames';
 import noop from 'noop';
 
@@ -25,11 +27,15 @@ export default class extends PureComponent{
 
   constructor(props){
     super(props);
-    this.state={...props};
+    this.state={
+      value:props.value
+    };
   }
 
   componentWillReceiveProps(nextProps,nextState){
-    this.setState(nextProps);
+    if(nextProps.value!==this.props.value){
+      this.setState({value:nextProps.value});
+    }
   }
 
   _onClick(inEvent){
