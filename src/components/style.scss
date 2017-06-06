@@ -1,6 +1,10 @@
-$react-ios7-switch-blue:#26a2ff;
-$react-ios7-switch-green:#4cd964;
-$react-ios7-switch-red:#a72e23;
+//theme list:
+$react-ios7-switch-theme:(
+  red:#a72e23,
+  green:#4cd964,
+  blue:#26a2ff
+);
+
 .react-ios7-switch {
   display: inline-block;
   position: relative;
@@ -73,31 +77,18 @@ $react-ios7-switch-red:#a72e23;
     opacity: 0.6;
   }
 
-  &[data-theme=green]{
-    input:checked + span {
-      box-shadow: inset 0 0 0 0.73em $react-ios7-switch-green;
-    }
 
-    input:focus:checked + span {
-      box-shadow: inset 0 0 0 0.73em darken($react-ios7-switch-green,10%);
-    }
-  }
 
-  &[data-theme=blue]{
-    input:checked + span {
-      box-shadow: inset 0 0 0 0.73em $react-ios7-switch-blue;
-    }
-    input:focus:checked + span {
-      box-shadow: inset 0 0 0 0.73em darken($react-ios7-switch-blue,10%);
-    }
-  }
+  //generate theme list:
+  @each $name,$color in $react-ios7-switch-theme{
+    &[data-theme=#{$name}]{
+      input:checked + span {
+        box-shadow: inset 0 0 0 0.73em $color;
+      }
 
-  &[data-theme=red]{
-    input:checked + span {
-      box-shadow: inset 0 0 0 0.73em $react-ios7-switch-red;
-    }
-    input:focus:checked + span {
-      box-shadow: inset 0 0 0 0.73em darken($react-ios7-switch-red,10%);
+      input:focus:checked + span {
+        box-shadow: inset 0 0 0 0.73em darken($color,10%);
+      }
     }
   }
 

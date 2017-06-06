@@ -9,10 +9,10 @@ import noop from 'noop';
 export default class extends PureComponent{
 
   static propTypes={
-    theme:PropTypes.string,
+    className:PropTypes.string,
+    theme:PropTypes.oneOf(['red','green','blue']),
     disabled:PropTypes.bool,
     size:PropTypes.string,
-    className:PropTypes.string,
     value:PropTypes.bool,
     onChange:PropTypes.func
   };
@@ -21,7 +21,6 @@ export default class extends PureComponent{
     theme:'green',
     disabled:null,
     size:'30px',
-    className:'',
     value:false,
     onChange:noop
   };
@@ -34,8 +33,9 @@ export default class extends PureComponent{
   }
 
   componentWillReceiveProps(nextProps,nextState){
-    if(nextProps.value!==this.props.value){
-      this.setState(nextProps);
+    const {value} = nextProps;
+    if(nextProps.value!== this.state.value){
+      this.setState({value});
     }
   }
 
