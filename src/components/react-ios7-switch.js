@@ -41,11 +41,11 @@ export default class extends PureComponent{
 
   _onClick(inEvent){
     inEvent.preventDefault();
-    const value = !this.state.value;
-    const {className,size,theme,onChange,...props} = this.props;
-    const {name} = this.refs.target;
-    const target = {value,...props};
-    this.setState({ value },()=>{
+    const currentValue = !this.state.value;
+    const { className,size,theme,onChange,value,...props } = this.props;
+    const { name } = this.refs.target;
+    const target = { value:currentValue,...props };
+    this.setState({ value:currentValue },()=>{
       this.props.onChange({ target });
     });
   }
