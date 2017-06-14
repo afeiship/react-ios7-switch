@@ -42,20 +42,17 @@ export default class extends PureComponent{
   _onClick(inEvent){
     inEvent.preventDefault();
     const value = !this.state.value;
+    const {name} = this.refs.target;
+    const target = {name,value};
     this.setState({ value },()=>{
-      this.props.onChange({
-        target:{value}
-      });
+      this.props.onChange({ target });
     });
   }
-
-  _onChange(inEvent){}
 
   render(){
     const {className,size,theme,disabled,...props} = this.props;
     return (
       <label
-        {...props}
         onClick={this._onClick.bind(this)}
         data-theme={theme}
         data-disabled={disabled}
@@ -63,7 +60,7 @@ export default class extends PureComponent{
           fontSize:size
         }}
         className={classNames('react-ios7-switch',className)}>
-        <input type="checkbox" onChange={this._onChange.bind(this)} checked={this.state.value} disabled={disabled} />
+        <input type="checkbox" ref="target" {...props} onChange={noop} checked={this.state.value} disabled={disabled} />
         <span></span>
       </label>
     );

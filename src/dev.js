@@ -36,7 +36,7 @@ class App extends React.Component {
         <div className="blank-20"></div>
         <ReactIos7Switch />
         <ReactIos7Switch theme="blue" />
-        <ReactIos7Switch theme="blue" onChange={this._onChange.bind(this)} value={true} size="50px" />
+        <ReactIos7Switch name="my-switch" theme="blue" onChange={this._onChange.bind(this)} value={true} size="50px" />
         <ReactIos7Switch theme="green" disabled={this.state.disabled} size="60px" value={this.state.value} />
         <ReactIos7Switch theme="red" size="40px" value={this.state.value} />
       </div>
