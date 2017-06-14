@@ -18,11 +18,11 @@ export default class extends PureComponent{
   };
 
   static defaultProps={
-    theme:'green',
-    disabled:null,
-    size:'30px',
-    value:false,
-    onChange:noop
+    theme: 'green',
+    disabled: false,
+    size: '30px',
+    value: false,
+    onChange: noop
   };
 
   constructor(props){
@@ -42,8 +42,9 @@ export default class extends PureComponent{
   _onClick(inEvent){
     inEvent.preventDefault();
     const value = !this.state.value;
+    const {className,size,theme,onChange,...props} = this.props;
     const {name} = this.refs.target;
-    const target = {name,value};
+    const target = {value,...props};
     this.setState({ value },()=>{
       this.props.onChange({ target });
     });
