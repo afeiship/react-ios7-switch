@@ -2,7 +2,7 @@ import './dev.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactIos7Switch from './main';
+import ReactSwitch from './main';
 
 class App extends React.Component {
   state = {

@@ -9,8 +9,8 @@ base.entry = {
 base.output = {
   path: config.build.assetsRoot,
   publicPath: config.build.assetsPublicPath,
-  filename: 'react-ios7-switch.js',
-  library: 'ReactIos7Switch',
+  filename: 'react-switch.js',
+  library: 'ReactSwitch',
   libraryTarget: 'umd'
 }
 
